@@ -8,12 +8,12 @@
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <title>Boolzapp VueJs</title>
     </head>
-    <body>
+    <body class= "d-flex flex-jc-center flex-align-center">
         <div id="appWindow" class="container">
           <div class="box-menu">
             <div class="tab user-tab">
-              <div class="user-info">
-                  <div class="img-user">
+              <div class="user-info flex-jc-space-b flex-align-center">
+                  <div class="avatar-box">
                     <img src="img/avatar_io.jpg" alt="user avatar">
                     Nome Utente
                   </div>
@@ -24,25 +24,49 @@
                   </div>
               </div>
             </div>
-            <div class="tab notif-tab">
-
+            <div class="notif-tab d-flex flex-jc-start flex-align-center">
+              <div class="notif-icon d-flex flex-jc-center flex-align-center">
+                <i class="fas fa-bell-slash"></i>
+              </div>
+              <div class="notif-message">
+                <h4>Ricevi notifica di nuovi messaggi</h4>
+                <a href="#">Attiva notifiche Desktop</a>
+              </div>
             </div>
             <div class="search-tab">
-
+              <input type="text"name="search-contact" placeholder="Search">
             </div>
             <div class="box-contacts">
-
+                <ul>
+                  <li class="contact-label d-flex flex-jc-start flex-align-center">
+                    <img src="img/avatar_1.jpg" alt="immagine foto contatto1">
+                    <h6>Nome contatto</h6>
+                  </li>
+                </ul>
             </div>
           </div>
           <div class="box-chat">
             <div class="tab chat-tab">
-
+              <div class="contact-chat-info d-flex flex-jc-start flex-align-center">
+                <img src="img/avatar_1.jpg" alt="Avatar contatto della chat">
+                <div class="chat-info">
+                  <h4>Nome Contatto</h4>
+                  <h6>Ultimo accesso oggi alle</h6>
+                </div>
+              </div>
+              <div class="icon-menu">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-paperclip"></i>
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
             </div>
             <div class="chatWindow">
 
             </div>
-            <div class="tab inputChat-tab">
-
+            <div class="tab inputChatTab d-flex flex-jc-space-b flex-align-center">
+              <button id="btnEmoticon" type="button" name="emoticon"><i class="far fa-smile"></i></button>
+              <input type="text" name="inputMessage" placeholder="Inserisci messaggio">
+              <button id="btnAudioMessage" type="button" name="AudioMessage"><i class="fas fa-microphone"></i></button>
             </div>
           </div>
         </div>

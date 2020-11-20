@@ -1,3 +1,4 @@
+/* reset */
 * {
     font-family: 'Lato';
     padding: 0;
@@ -15,57 +16,157 @@ body{
 height: 100vh;
 background: linear-gradient(#009688, #009688 20vh, #DADBD3 20vh, #DADBD3 100%);
 height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
 }
 
+/* schermata dell'app */
 #appWindow{
   height: 90%;
   width: 80vw;
   display: flex;
 }
+/* menu di sinistra con scelta contatti */
 #appWindow > .box-menu {
   width: 35%;
   background-color: white;
   border: 1px solid grey;
 }
+/* scheramata con la chat selezionata */
 #appWindow > .box-chat {
   width: 65%;
   background-image: url("../img/mine.jpg");
   border: 1px solid grey;
 }
+/* impostazione dei tab generica */
 #appWindow .tab {
   height: 50px;
   width: 100%;
   background-color: #EAEAEA;
-  border: 1px solid grey;
-}
-#appWindow > .box-menu > .search-tab {
-  height: 35px;
-  width: 100%;
-
-}
-#appWindow > .box-menu > .box-contacts {
-  height: calc(100% - 135px);
-  width: 100%;
-}
-#appWindow > .box-chat > .chatWindow {
-  height: calc(100% - 100px);
-  width: 100%;
-}
-#appWindow > .user-tab{
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-#appWindow .user-info img {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
+/* ricerca tra i contatti */
+#appWindow > .box-menu > .search-tab {
+  height: 35px;
+  width: 100%;
 }
-#appWindow .user-info div {
+/* box dei contatti */
+#appWindow > .box-menu > .box-contacts {
+  height: calc(100% - 135px);
+  width: 100%;
+}
+/* schermata della chat con i messaggi inviati */
+#appWindow > .box-chat > .chatWindow {
+  height: calc(100% - 100px);
+  width: 100%;
+}
+
+#appWindow .user-info {
+  display: inline-flex;
+  width: 100%;
+}
+#appWindow .avatar-box{
+  display: inline-block;
+}
+#appWindow img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+#appWindow .user-info div{
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+#appWindow .icon-menu i {
+  margin: 0 10px;
+  color: #B1B1B1;
+}
+#appWindow .notif-tab {
+  height: 60px;
+  width: 100%;
+  background-color: #8EDAFC;
+  padding: 0 10px;
+}
+#appWindow .notif-tab .notif-icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: white;
+}
+#appWindow .notif-icon i {
+  color: #8EDAFC;
+}
+#appWindow .notif-tab .notif-message a {
+  color: #B1B1B1
+}
+
+#appWindow .search-tab{
+  padding: 5px 10px;
+  background-color: #EAEAEA;
+}
+#appWindow .search-tab > input{
+  width: 100%;
+  height: 90%;
+  border: 0;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+#appWindow .contact-info{
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+#appWindow .contact-label{
+  padding: 5px 15px;
+  border-bottom: 1px solid grey;
+}
+#appWindow .contact-label h6{
+  align-self: baseline;
+}
+#appWindow .inputChatTab > input {
+  width: 100%;
+  height: 35px;
+  border: 0;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+#appWindow .inputChatTab > button {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  color: #6B7376;
+  background-color: #EAEAEA;
+  font-size: 1.3em;
+}
+#btnEmoticon{
+  margin-right: 10px;
+}
+#btnAudioMessage{
+  margin-left: 10px;
+}
+/* classi flex */
+.d-flex{
+  display: flex;
+}
+.flex-jc-center{
+  justify-content: center;
+}
+.flex-jc-space-b{
+  justify-content: space-between;
+}
+.flex-jc-space-a{
+  justify-content: space-around;
+}
+.flex-jc-start{
+  justify-content: flex-start;
+}
+.flex-align-center{
+  align-items: center;
+}
+textarea:focus, input:focus{
+    outline: none;
 }
