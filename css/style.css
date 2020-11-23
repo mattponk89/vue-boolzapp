@@ -23,6 +23,7 @@ height: 100vh;
   height: 90%;
   width: 80vw;
   display: flex;
+  overflow: hidden;
 }
 /* menu di sinistra con scelta contatti */
 #appWindow > .box-menu {
@@ -53,13 +54,16 @@ height: 100vh;
 }
 /* box dei contatti */
 #appWindow > .box-menu > .box-contacts {
-  height: calc(100% - 135px);
+  height: calc(100% - 145px);
   width: 100%;
+  overflow-y: auto;
 }
 /* schermata della chat con i messaggi inviati */
 #appWindow > .box-chat > .chatWindow {
   height: calc(100% - 100px);
   width: 100%;
+  overflow-y: auto;
+  padding: 10px;
 }
 
 #appWindow .user-info {
@@ -100,7 +104,7 @@ height: 100vh;
 #appWindow .notif-icon i {
   color: #8EDAFC;
 }
-#appWindow .notif-tab .notif-message a {
+#appWindow .notif-tab .notif-message a{
   color: #B1B1B1
 }
 
@@ -115,6 +119,10 @@ height: 100vh;
   padding-left: 10px;
   border-radius: 5px;
 }
+#appWindow .search-tab > input{
+  font-family: "Lato", "Font Awesome 5 Free";
+  font-weight: 900;
+}
 #appWindow .contact-info{
   display: inline-flex;
   justify-content: flex-start;
@@ -122,9 +130,12 @@ height: 100vh;
 }
 #appWindow .contact-label{
   padding: 5px 15px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #eaeaea;
 }
-#appWindow .contact-label h6{
+#appWindow .clickable:hover{
+  cursor: pointer;
+}
+#appWindow .contact-label h5{
   align-self: baseline;
 }
 #appWindow .inputChatTab > input {
@@ -142,6 +153,14 @@ height: 100vh;
   background-color: #EAEAEA;
   font-size: 1.3em;
 }
+#appWindow .chatWindow .msg{
+  padding: 10px 20px;
+  max-width: 90%;
+  margin: 5px;
+}
+.active{
+background-color: #f4f2f2;
+}
 #btnEmoticon{
   margin-right: 10px;
 }
@@ -151,6 +170,9 @@ height: 100vh;
 /* classi flex */
 .d-flex{
   display: flex;
+}
+.flex-dir-col{
+  flex-direction:column;
 }
 .flex-jc-center{
   justify-content: center;
@@ -167,6 +189,37 @@ height: 100vh;
 .flex-align-center{
   align-items: center;
 }
+.msg.sended{
+  align-self: flex-end;
+  display: block;
+  background-color: #85ea87;
+  border-radius: 5px;
+}
+.msg.received{
+  align-self: flex-start;
+  display: block;
+  background-color: #eaeaea;
+  border-radius: 5px;
+}
+
+/* eliminare i bordi quando focus */
 textarea:focus, input:focus{
     outline: none;
+}
+
+::-webkit-scrollbar-track
+{
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+width: 6px;
+background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+background-color: #6B7376;
 }

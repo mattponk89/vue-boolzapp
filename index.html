@@ -5,25 +5,29 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
         <link rel="stylesheet" href="css/style.css">
+        <script src="js/data.js" charset="utf-8"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <title>Boolzapp VueJs</title>
     </head>
     <body class= "d-flex flex-jc-center flex-align-center">
         <div id="appWindow" class="container">
           <div class="box-menu">
+            <!-- Utente loggato  -->
             <div class="tab user-tab">
               <div class="user-info flex-jc-space-b flex-align-center">
-                  <div class="avatar-box">
-                    <img src="img/avatar_io.jpg" alt="user avatar">
-                    Nome Utente
+                  <div class="avatar-box" v-model="userAccount">
+                    <img :src="userAccount.userAvatar" alt="user avatar">
+                    <h4>{{ userAccount.userName }}</h4>
                   </div>
+                  <!-- menu utente loggato -->
                   <div class="icon-menu">
-                    <i class="fas fa-circle-notch"></i>
-                    <i class="fas fa-comment-alt"></i>
-                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="clickable fas fa-circle-notch"></i>
+                    <i class="clickable fas fa-comment-alt"></i>
+                    <i class="clickable fas fa-ellipsis-v"></i>
                   </div>
               </div>
             </div>
+            <!-- bottone notifiche -->
             <div class="notif-tab d-flex flex-jc-start flex-align-center">
               <div class="notif-icon d-flex flex-jc-center flex-align-center">
                 <i class="fas fa-bell-slash"></i>
@@ -33,40 +37,53 @@
                 <a href="#">Attiva notifiche Desktop</a>
               </div>
             </div>
+            <!-- tab per la ricerca dei contatti -->
             <div class="search-tab">
-              <input type="text"name="search-contact" placeholder="Search">
+              <input type="text"name="search-contact" v-model="inputSearchContact" placeholder="&#xF002; Search">
             </div>
+            <!-- lista contatti -->
             <div class="box-contacts">
                 <ul>
-                  <li class="contact-label d-flex flex-jc-start flex-align-center">
-                    <img src="img/avatar_1.jpg" alt="immagine foto contatto1">
-                    <h6>Nome contatto</h6>
-                  </li>
+                  <template v-for="(scheda, index) in contactsFiltered" v-model="chatSelector">
+                    <li :class="{active: (scheda.id == chatSelector)}" class="contact-label clickable d-flex flex-jc-start flex-align-center" @click="changeChat(scheda.id)">
+                      <img :src="scheda.avatarContact" :alt="'immagine di'+ scheda.nome">
+                      <h5>{{scheda.nome}}</h5>
+                    </li>
+                  </template>
                 </ul>
             </div>
           </div>
+          <!-- box della chat / parte destra dell'App -->
           <div class="box-chat">
+            <!-- tab della chat del contatto selezionato -->
             <div class="tab chat-tab">
               <div class="contact-chat-info d-flex flex-jc-start flex-align-center">
-                <img src="img/avatar_1.jpg" alt="Avatar contatto della chat">
+                <img :src="contacts[chatSelector].avatarContact" alt="Avatar contatto della chat">
                 <div class="chat-info">
-                  <h4>Nome Contatto</h4>
-                  <h6>Ultimo accesso oggi alle</h6>
+                  <h4>{{contacts[chatSelector].nome}}</h4>
+                  <h6>Ultimo accesso oggi alle {{contacts[chatSelector].lastSeen}}</h6>
                 </div>
               </div>
+              <!-- menu della chat -->
               <div class="icon-menu">
-                <i class="fas fa-search"></i>
-                <i class="fas fa-paperclip"></i>
-                <i class="fas fa-ellipsis-v"></i>
+                <i class="clickable fas fa-search"></i>
+                <i class="clickable fas fa-paperclip"></i>
+                <i class="clickable fas fa-ellipsis-v"></i>
               </div>
             </div>
-            <div class="chatWindow">
-
+            <!-- finestra della chat (messaggi inviati e ricevuti) -->
+            <div class="chatWindow d-flex flex-dir-col flex-jc-start">
+              <template v-for="(el, index) in contacts[chatSelector].chat">
+                <div :class="{ sended: el.mittente, received: (el.mittente == 0) }" class="msg">
+                  {{ el.text }}
+                </div>
+              </template>
             </div>
+            <!-- tab per l'invio di un messaggio -->
             <div class="tab inputChatTab d-flex flex-jc-space-b flex-align-center">
-              <button id="btnEmoticon" type="button" name="emoticon"><i class="far fa-smile"></i></button>
-              <input type="text" name="inputMessage" placeholder="Inserisci messaggio">
-              <button id="btnAudioMessage" type="button" name="AudioMessage"><i class="fas fa-microphone"></i></button>
+              <button id="btnEmoticon" class="clickable" type="button" name="emoticon"><i class="far fa-smile"></i></button>
+              <input type="text" name="inputMessage" placeholder="Inserisci messaggio" v-model="message.text" @keydown.enter="sendMessage(chatSelector)">
+              <button id="btnAudioMessage" class="clickable" type="button" name="AudioMessage"><i class="fas fa-microphone"></i></button>
             </div>
           </div>
         </div>
