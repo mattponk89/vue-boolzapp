@@ -23,6 +23,7 @@ const boolzApp = new Vue({
       let newMessage = {...this.message}
       this.contacts[index].chat.push(newMessage);
       this.clearInputMessage();
+      setTimeout(this.autoscroll,10)
       setTimeout(this.contactReply, 3000, index)
     }, // azzero il textbox del messaggio dopo averlo inviato.
     clearInputMessage: function(){
@@ -35,7 +36,11 @@ const boolzApp = new Vue({
         mittente: 0
       }
       this.contacts[index].chat.push(messageReply);
-    }
+    },
+    autoscroll: function() {
+      let windowChat = document.getElementsByClassName('chatWindow')[0];
+      windowChat.scrollTop = windowChat.scrollHeight;
+      }
 
   },
   computed:{ //creo un array dei contatti filtrati con la ricerca
