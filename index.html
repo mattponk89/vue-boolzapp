@@ -44,7 +44,7 @@
             <!-- lista contatti -->
             <div class="box-contacts">
                 <ul>
-                  <template v-for="(scheda, index) in contactsFiltered" v-model="chatSelector">
+                  <template v-for="(scheda, index) in contactsFiltered">
                     <li :class="{active: (scheda == contactActive)}" class="contact-label clickable d-flex flex-jc-start flex-align-center" @click="changeChat(scheda)">
                       <img :src="scheda.avatarContact" :alt="'immagine di'+ scheda.nome">
                       <div class="">

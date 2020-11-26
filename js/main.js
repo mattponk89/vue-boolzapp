@@ -22,14 +22,14 @@ const boolzApp = new Vue({
     changeChat: function(contact){
       this.contactActive = contact
     }, //funzione invio messaggio in chat con risposta automatica
-    sendMessage: function(index){
+    sendMessage: function(contactActive){
       this.dataOra()
       let newMessage = {...this.message}
       this.contactActive.chat.push(newMessage);
       this.clearInputMessage();
       this.autoscroll()
-      let idContactActive = this.contactActive.id
-      setTimeout(this.contactReply, 3000, idContactActive)
+      this.upContact(contactActive.id)
+      setTimeout(this.contactReply, 3000, contactActive.id)
 
 
     }, // azzero il textbox del messaggio dopo averlo inviato.
@@ -46,6 +46,7 @@ const boolzApp = new Vue({
         data: today.toLocaleTimeString()
       }
       this.contacts[indexReply].chat.push(messageReply);
+      this.upContact(idActive)
     },
     autoscroll: function() { //autoscroll
       Vue.nextTick(function(){
@@ -53,7 +54,12 @@ const boolzApp = new Vue({
         windowChat.scrollTop = windowChat.scrollHeight;
       })
     },
-
+    upContact: function(id){
+      let indexUp = this.contacts.findIndex(el => el.id == id)
+      let contactSaved = this.contacts[indexUp]
+      this.contacts.splice(indexUp, 1)
+      this.contacts.unshift(contactSaved)
+    },
     dataOra: function(){ //funzione per l'orario
       let today = new Date()
       this.message.data = today.toLocaleTimeString()
