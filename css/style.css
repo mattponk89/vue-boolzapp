@@ -128,6 +128,15 @@ height: 100vh;
   justify-content: flex-start;
   align-items: flex-start;
 }
+#appWindow .contact-label .msgLast{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}
+#appWindow .contact-label>div{
+  width: 80%;
+}
 #appWindow .contact-label{
   padding: 5px 15px;
   border-bottom: 1px solid #eaeaea;
@@ -153,13 +162,51 @@ height: 100vh;
   background-color: #EAEAEA;
   font-size: 1.3em;
 }
-#appWindow .chatWindow .msg{
-  padding: 10px 20px;
-  max-width: 90%;
-  margin: 5px;
-}
 .active{
 background-color: #f4f2f2;
+}
+#appWindow .chatWindow .msg{
+  max-width: 90%;
+  margin: 5px;
+  min-width: 50px;
+
+}
+
+#appWindow .chatWindow .msg a{
+  color: #6B7376;
+  text-decoration: none;
+  margin-right: 7px;
+}
+.msg .msgText{
+  padding: 5px 10px 5px 10px;
+  width:95%;
+  display: inline-block;
+  text-align: left;
+  word-break: break-word;
+}
+.msg .msgMenu{
+  visibility: hidden;
+}
+.msg:hover .msgMenu{
+  visibility:visible;
+}
+.msg.sended{
+  align-self: flex-end;
+  display: block;
+  background-color: #85ea87;
+  border-radius: 5px;
+}
+.msg.received{
+  align-self: flex-start;
+  display: block;
+  background-color: #eaeaea;
+  border-radius: 5px;
+}
+.msg .msgDate{
+  margin-bottom: 5px;
+  margin-right: 10px;
+  font-size: 8px;
+  text-align: right;
 }
 #btnEmoticon{
   margin-right: 10px;
@@ -186,20 +233,14 @@ background-color: #f4f2f2;
 .flex-jc-start{
   justify-content: flex-start;
 }
+.flex-jc-end{
+  justify-content: flex-end;
+}
 .flex-align-center{
   align-items: center;
 }
-.msg.sended{
+.align-self-end{
   align-self: flex-end;
-  display: block;
-  background-color: #85ea87;
-  border-radius: 5px;
-}
-.msg.received{
-  align-self: flex-start;
-  display: block;
-  background-color: #eaeaea;
-  border-radius: 5px;
 }
 
 /* eliminare i bordi quando focus */

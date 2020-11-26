@@ -14,11 +14,13 @@ var dati = [
     chat:[
       {
         text: "Flavio posso farti una domanda?",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
-        text: "Certo! Dimmi tutto..",
-        mittente: 0
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        mittente: 0,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -35,11 +37,13 @@ var dati = [
     chat:[
       {
         text: "Ciao, non riesco a capire come mai non mi funziona.. l'esercizio per me è perfetto!",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Controlla bene a riga 16, hai fatto un errore semplice. Ti suona?",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -56,11 +60,13 @@ var dati = [
     chat:[
       {
         text: "Ciao, mi puoi aiutare? Non riesco a capire come implementare questa funzione del programma..",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Certo, dimmi il tuo problema..",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -77,11 +83,13 @@ var dati = [
     chat:[
       {
         text: "Ciao Marco! Come stai?",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Ciao Matt, tutto bene tu?",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -98,11 +106,13 @@ var dati = [
     chat:[
       {
         text: "Bella Mirko! Sei un grande..",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Ciaooo.. Grazie grazie lo so!",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -119,15 +129,18 @@ var dati = [
     chat:[
       {
         text: "Heila Matt, tutto bene?",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Ciao! Tutto ok tu?",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       },
       {
         text: "Certo!",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       }
     ]
   },
@@ -144,15 +157,18 @@ var dati = [
     chat:[
       {
         text: "A",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       },
       {
         text: "B",
-        mittente: 0
+        mittente: 0,
+        data: "21/11/2020 15:32"
       },
       {
         text: "C",
-        mittente: 1
+        mittente: 1,
+        data: "21/11/2020 15:32"
       }
     ]
   }

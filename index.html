@@ -45,9 +45,12 @@
             <div class="box-contacts">
                 <ul>
                   <template v-for="(scheda, index) in contactsFiltered" v-model="chatSelector">
-                    <li :class="{active: (scheda.id == chatSelector)}" class="contact-label clickable d-flex flex-jc-start flex-align-center" @click="changeChat(scheda.id)">
+                    <li :class="{active: (scheda == contactActive)}" class="contact-label clickable d-flex flex-jc-start flex-align-center" @click="changeChat(scheda)">
                       <img :src="scheda.avatarContact" :alt="'immagine di'+ scheda.nome">
-                      <h5>{{scheda.nome}}</h5>
+                      <div class="">
+                        <h5>{{scheda.nome}}</h5>
+                        <div class="msgLast">{{scheda.chat[scheda.chat.length-1].text}}</div>
+                      </div>
                     </li>
                   </template>
                 </ul>
@@ -58,10 +61,10 @@
             <!-- tab della chat del contatto selezionato -->
             <div class="tab chat-tab">
               <div class="contact-chat-info d-flex flex-jc-start flex-align-center">
-                <img :src="contacts[chatSelector].avatarContact" alt="Avatar contatto della chat">
+                <img :src="contactActive.avatarContact" alt="Avatar contatto della chat">
                 <div class="chat-info">
-                  <h4>{{contacts[chatSelector].nome}}</h4>
-                  <h6>Ultimo accesso oggi alle {{contacts[chatSelector].lastSeen}}</h6>
+                  <h4>{{contactActive.nome}}</h4>
+                  <h6>Ultimo accesso oggi alle {{contactActive.lastSeen}}</h6>
                 </div>
               </div>
               <!-- menu della chat -->
@@ -73,16 +76,29 @@
             </div>
             <!-- finestra della chat (messaggi inviati e ricevuti) -->
             <div class="chatWindow d-flex flex-dir-col flex-jc-start">
-              <template v-for="(el, index) in contacts[chatSelector].chat">
+              <template v-for="(el, index) in contactActive.chat">
                 <div :class="{ sended: el.mittente, received: (el.mittente == 0) }" class="msg">
-                  {{ el.text }}
+                  <div class="msg-container  d-flex flex-jc-space-b">
+                    <div class="msgText">{{ el.text }}</div>
+                    <div class="msgMenu d-flex flex-jc-center flex-dir-col">
+                      <a class="first-menu" @click="deleteMsg(index)" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="msgDate">
+                    {{el.data}}
+                  </div>
                 </div>
               </template>
             </div>
             <!-- tab per l'invio di un messaggio -->
             <div class="tab inputChatTab d-flex flex-jc-space-b flex-align-center">
-              <button id="btnEmoticon" class="clickable" type="button" name="emoticon"><i class="far fa-smile"></i></button>
-              <input type="text" name="inputMessage" placeholder="Inserisci messaggio" v-model="message.text" @keydown.enter="sendMessage(chatSelector)">
+              <button id="btnEmoticon"
+                class="clickable"
+                type="button"
+                name="emoticon">
+                <i class="far fa-smile"></i>
+              </button>
+              <input type="text" name="inputMessage" placeholder="Inserisci messaggio" v-model="message.text" @keydown.enter="sendMessage(contactActive)">
               <button id="btnAudioMessage" class="clickable" type="button" name="AudioMessage"><i class="fas fa-microphone"></i></button>
             </div>
           </div>

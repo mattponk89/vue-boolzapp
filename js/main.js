@@ -3,11 +3,12 @@ Vue.config.devtools = true
 const boolzApp = new Vue({
   el: '#appWindow',
   data: {
-    chatSelector: 0, //selettore della chat
+    contactActive: null, //selettore della chat
     inputSearchContact: "", //ricerca contatto
     message: { //oggetto messaggio con testo e mittente
       text: "",
-      mittente: 1
+      mittente: 1,
+      data: ""
     },
     userAccount: {
       userAvatar: "img/avatar_io.jpg",
@@ -15,32 +16,52 @@ const boolzApp = new Vue({
     }, // variabile nel file data.js
     contacts : [...dati],
   },
+  created: function(){
+    this.contactActive = this.contacts[0]},
   methods: { //funzione cambia chat al click del contatto
-    changeChat: function(index){
-      this.chatSelector = index
+    changeChat: function(contact){
+      this.contactActive = contact
     }, //funzione invio messaggio in chat con risposta automatica
     sendMessage: function(index){
+      this.dataOra()
       let newMessage = {...this.message}
-      this.contacts[index].chat.push(newMessage);
+      this.contactActive.chat.push(newMessage);
       this.clearInputMessage();
-      setTimeout(this.autoscroll,10)
-      setTimeout(this.contactReply, 3000, index)
+      this.autoscroll()
+      let idContactActive = this.contactActive.id
+      setTimeout(this.contactReply, 3000, idContactActive)
+
+
     }, // azzero il textbox del messaggio dopo averlo inviato.
     clearInputMessage: function(){
       this.message.text = "";
     }, // funzione per la risposta automatica con selezione random tra più risposte possibili
-    contactReply: function(index){
-      const randomNum = Math.floor(Math.random() * (this.contacts[index].risposteSolite.length))
-      const messageReply = {
-        text: this.contacts[index].risposteSolite[randomNum],
-        mittente: 0
+    contactReply: function(idActive){
+      const randomNum = Math.floor(Math.random() * (this.contactActive.risposteSolite.length))
+      let today = new Date()
+      let indexReply = this.contacts.findIndex(el => el.id == idActive)
+      const messageReply = { //reply automatico
+        text: this.contacts[indexReply].risposteSolite[randomNum],
+        mittente: 0,
+        data: today.toLocaleTimeString()
       }
-      this.contacts[index].chat.push(messageReply);
+      this.contacts[indexReply].chat.push(messageReply);
     },
-    autoscroll: function() {
-      let windowChat = document.getElementsByClassName('chatWindow')[0];
-      windowChat.scrollTop = windowChat.scrollHeight;
-      }
+    autoscroll: function() { //autoscroll
+      Vue.nextTick(function(){
+        let windowChat = document.getElementsByClassName('chatWindow')[0];
+        windowChat.scrollTop = windowChat.scrollHeight;
+      })
+    },
+
+    dataOra: function(){ //funzione per l'orario
+      let today = new Date()
+      this.message.data = today.toLocaleTimeString()
+    },
+    deleteMsg: function(indexMsg){
+      this.contactActive.chat.splice(indexMsg,1)
+    }
+
 
   },
   computed:{ //creo un array dei contatti filtrati con la ricerca
